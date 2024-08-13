@@ -1,0 +1,33 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+db.sqlite3-journal
+
+# Ignore macOS system files
+.DS_Store
+
+# Environment variables
+.env
+*.env
+
+# VS Code settings
+.vscode/
+
+# Static and media files
+staticfiles/
+media/
+
+# Ignore files created by JetBrains IDEs
+.idea/
