@@ -1,10 +1,25 @@
 {% extends 'base.html' %}
 
-{% block title %}Home{% endblock title %}
-
 {% block content %}
-<div class="container mt-5">
-    <h1>Welcome to the Home Page</h1>
-    <p>This is the home page of your Django site.</p>
-</div>
-{% endblock content %}
+  <div class="container mt-4">
+    <h2>Welcome to ComplainSpace</h2>
+    
+    <div class="my-4">
+      <a href="{% url 'post_new' %}" class="btn btn-primary">Create New Post</a>
+      <a href="{% url 'post_list' %}" class="btn btn-secondary">View All My Posts</a>
+    </div>
+
+    <h3>Latest Posts</h3>
+    <ul class="list-group">
+      {% for post in latest_posts %}
+        <li class="list-group-item">
+          <h5><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h5>
+          <p>{{ post.subtitle }}</p>
+          <small>Posted on {{ post.created_on|date:"F j, Y, g:i a" }} by {{ post.author }}</small>
+        </li>
+      {% empty %}
+        <li class="list-group-item">No posts available.</li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
