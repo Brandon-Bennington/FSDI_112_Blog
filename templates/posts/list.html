@@ -1,15 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>All Posts</h2>
-  <ul>
-    {% for post in posts %}
-      <li>
-        <a href="{% url 'post_detail' post.id %}">{{ post.title }}</a>
-        <a href="{% url 'post_edit' post.id %}">Edit</a>
-        <a href="{% url 'post_delete' post.id %}">Delete</a>
-      </li>
-    {% endfor %}
-  </ul>
-  <a href="{% url 'post_new' %}">Create New Post</a>
+<div class="container mt-4">
+    <h2>All Posts</h2>
+    
+    <div class="my-4">
+        <a href="{% url 'post_new' %}" class="btn btn-primary">Create New Post</a>
+    </div>
+
+    <ul class="list-group">
+        {% for post in posts %}
+        <li class="list-group-item">
+            <h5><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h5>
+            <p>{{ post.subtitle }}</p>
+            <small>Posted on {{ post.created_on|date:"F j, Y, g:i a" }} by {{ post.author }}</small>
+            {% if post.author == request.user %}
+            <div class="mt-2">
+                <a href="{% url 'post_edit' post.id %}" class="btn btn-sm btn-secondary">Edit</a>
+                <a href="{% url 'post_delete' post.id %}" class="btn btn-sm btn-danger">Delete</a>
+            </div>
+            {% endif %}
+        </li>
+        {% empty %}
+        <li class="list-group-item">No posts available.</li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

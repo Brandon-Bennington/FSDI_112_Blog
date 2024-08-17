@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>{{ object.title }}</h2>
-  <p>{{ object.subtitle }}</p>
-  <p>{{ object.body }}</p>
-  <p>Status: {{ object.status.name }}</p>
-  <p>Created on: {{ object.created_on }}</p>
+<div class="container mt-4">
+    <h2>{{ object.title }}</h2>
+    <p>{{ object.subtitle }}</p>
+    <p>{{ object.body }}</p>
+    <p>Status: {{ object.status.name }}</p>
+    <p>Created on: {{ object.created_on|date:"F j, Y, g:i a" }}</p>
+    <p>Author: {{ object.author }}</p>
+    
+    {% if object.author == request.user %}
+    <div class="mt-4">
+        <a href="{% url 'post_edit' object.id %}" class="btn btn-sm btn-secondary">Edit</a>
+        <a href="{% url 'post_delete' object.id %}" class="btn btn-sm btn-danger">Delete</a>
+    </div>
+    {% endif %}
+</div>
 {% endblock %}

@@ -132,4 +132,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 
+# django.core.mail.backends.console.EmailBackend is for test server that shows on the console. 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
